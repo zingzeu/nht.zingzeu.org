@@ -1,0 +1,35 @@
+#n Wyam.Markdown
+#n Wyam.Yaml
+#n Wyam.Razor
+
+Settings[Keys.Host] = "nht.zingzeu.org";
+Settings["SiteName"] = "南风天 2020 - 平话保护者小聚";
+
+public sealed class TalkModel
+{
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Speaker { get; set; }
+    public string SpeakerDescription { get; set; }
+    public string SpeakerAvatar { get; set; }
+}
+
+// Add any pipeline customizations here
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture
+    = System.Globalization.CultureInfo.CreateSpecificCulture("zh-CN");
+
+Pipelines.Add("Home",
+    ReadFiles("{!_,}*.cshtml"),
+    Razor(),
+    WriteFiles(".html")
+);
+
+Pipelines.Add("Assets",
+    ReadFiles("assets/**/*"),
+    WriteFiles()
+);
+
+Pipelines.Add("GithubIO",
+    ReadFiles("CNAME"),
+    WriteFiles()
+);

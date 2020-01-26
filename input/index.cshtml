@@ -1,0 +1,70 @@
+<div class="container">
+    <h3>主题短讲</h3>
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "开场演讲: 福州话保护的蓝图",
+        Description = "(待定)",
+        Speaker = "(待定)",
+        SpeakerDescription = "(待定)",
+        SpeakerAvatar = "https://ui-avatars.com/api/?name=%3f"
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "福州话课本电子化",
+        Description = "福州话课文电子化，就是将过去福州话教材的文本内容数位化，并配置音频、视频，以网站为载体在网络上展现。电子化对象，是《闽语入门》与《榕腔初学二十堂》这两本上世纪出版的福州话课本。我们的目标是，让这两本过去的教材「复活」，给现在的年轻人学习福州话创造条件。",
+        Speaker = "子善",
+        SpeakerDescription = "福州话输入法、榕典、福州话课本电子化的负责人之一",
+        SpeakerAvatar = Context.GetLink("/assets/images/zysieng.png")
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "火种：福州一中方言研究性学习",
+        Description = "“火种”研学是福州一中校内的福州话课堂，由福州一中的同学们自己组织开设。研学设置的目的是——保护祖辈世代相传、传承丰富文化底蕴的福州话，阻止其在未来消失。目前研学共有人数70人，其中有高一同学20人。采取大班上课形式，开课频率大约每周一次。由于初五一中的同学不便参加，因此由子善代替一中负责人对“火种”研学进行简单的介绍。",
+        Speaker = "子善",
+        SpeakerDescription = "(代替一中负责人)",
+        SpeakerAvatar = Context.GetLink("/assets/images/zysieng.png")
+    })
+
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "真鸟囝输入法和榕典 入门",
+        Description = "真鸟囝输入法是一款带有福州话词库，面向福州话保护者的的平话拼音输入法。我们相信它是福州话电脑输入迈向普及的第一步。我们将带你上手真鸟囝输入法，并就个人如何参与并塑造真鸟囝输入法进行讨论。<br/>"+
+                     "榕典是一款正在开发中的多来源在线平话字词典。我们的目标是帮助福州话保护者和学习者便捷地获取高质量的福州话字、词、音资料。我们会展示榕典的功能，以及你可以如何参与。期望听到你的意见。",
+        Speaker = "Radium",
+        SpeakerDescription = "真鸟囝输入法和榕典技术负责人",
+        SpeakerAvatar = Context.GetLink("/assets/images/radium.png")
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "从公共历史教育的视角去看方言的教育和传承",
+        Description = "从一个公共历史教育的视角去看方言的教育和传承问题，为大家梳理一下学术界学者们对方言教育的一些研究，通用性的理念，结合我在英国参与的中华语言文化保护项目经验，和大家一起探讨福州方言保护和教育的可能性。",
+        Speaker = "江泓",
+        SpeakerDescription = "华东师范大学的教育学部从事博士后，专业领域是师范教育和口述历史（公共历史），闽都乡学讲习中心的学术理事，致力于福州民俗和非物质文化遗产的推广传承。",
+        SpeakerAvatar = "https://ui-avatars.com/api/?name=江"
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "福州话地名收集",
+        Description = "地名采集主要包括收集地名、地理位置、图像、历史沿革、平话读音、发音人信息等相关数据。我们打算主要以表格的方式将收集到的资料以不同行政区划分门别类，同时提供搜索功能，这样既方便用户查阅，也方标网站维护。在这样的网站上，我们不仅可以做与地名相关的内容，我们甚至可以筹划将词典数字化并提供查询，集合平话相关的资源，提供给学习者一个便捷的平台。",
+        Speaker = "蓝尾星",
+        SpeakerDescription = "",
+        SpeakerAvatar = "https://ui-avatars.com/api/?name=蓝"
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "我的福州话故事",
+        Description = "一、个人对福州话爱好的发端<br/>"+
+                    "二、近十年来所了解、参与的福州话项目、活动举例<br/>"+
+                    "三、在外求学背景下福州话对个人学习生活的正面影响<br/>"+
+                    "四、中部地区方言保护举例<br/>"+
+                    "五、对现有针对青少年的福州话普及项目的简述与展望<br/>",
+        Speaker = "聂森浩",
+        SpeakerDescription = "",
+        SpeakerAvatar = "https://ui-avatars.com/api/?name=聂"
+    })
+    @Html.Partial("_Talk", new TalkModel {
+        Title = "闽东维基 Update",
+        Description = "闽东语维基百科 (cdo.wikipedia.org) 及福州话有声新闻。闽东语包括福州话、福安话、福鼎话，使用者分布于闽东及东南亚、日本、美国等地华人社区。我们致力于用文字、语音记录闽东语。",
+        Speaker = "黄璟泠",
+        SpeakerDescription = "闽东语维基百科志愿者",
+        SpeakerAvatar = "https://ui-avatars.com/api/?name=黄"
+    })
+    <h3>关于</h3>
+    <p>"南风天"旨在促进平话（闽东语福州话）保护者展示成果、互相交流想法、共享资源，协力保护平话。其发源于2017、2018年春季几位福州话保护者的非正式小聚会。今年因肺炎病毒疫情改为线上进行。
+    </p>
+    <h3>如何参与</h3>
+    <p>小聚演讲将在bilibili通过网络直播。届时你可以通过直播聊天室和演讲者互动。请关注此页面，或加入<a href="#" onclick="showQrCode()">微信群</a>以获取最新信息。</p>
+</div>

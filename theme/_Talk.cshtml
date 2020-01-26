@@ -1,0 +1,16 @@
+@model TalkModel
+
+ <div class="talk card">
+   <div class="card-body">
+    <h5>@Model.Title</h5>
+    <p>@Html.Raw(Model.Description)</p>
+    <div class="media">
+        <img src="@Model.SpeakerAvatar"
+            class="mr-3 avatar rounded float-left" alt="">
+        <div class="media-body">
+            <h6 class="mt-0">by @Model.Speaker</h6>
+            @Model.SpeakerDescription
+        </div>
+    </div>
+</div>
+</div>

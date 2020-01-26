@@ -1,0 +1,32 @@
+@import "sass/node_modules/bootstrap/scss/bootstrap";
+
+
+.test {
+    color: red;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.title-yngping {
+    font-size: 20px;
+}
+
+.hero-background {
+    background:darkslategray;
+}
+
+.hero-inner {
+    background:none;
+    color: white
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.talk {
+    margin-bottom: 20px;
+}
