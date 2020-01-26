@@ -46,8 +46,7 @@ title = title + " | " + Model.String("SiteName");
         <!-- TODO: video player -->
     </div>
     @RenderBody()
-    @Html.Partial("_Footer")
-
+    
     @Html.Partial("_WechatQrCodeModal")
     <script>
         function showQrCode() {
@@ -61,6 +60,8 @@ title = title + " | " + Model.String("SiteName");
             modal.style.display = "none";
         }
     </script>
+    @Html.Partial("_Footer")
+
 </body>
 
 </html>
