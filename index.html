@@ -35,8 +35,66 @@
             <a class="btn btn-secondary btn-lg" style="margin-left: 5px"
                 onclick="showQrCode()">微信群</a>
         </div>
-        <!-- TODO: video player -->
     </div>
+    
+<div class="container countdown">
+    <div id="pre">
+        <h1>距离直播开始还有</h1>
+        <h2><span id="day">0</span> 天 <span id="hour">0</span> 小时 <span id="min">0</span> 分 <span id="sec">0</span> 秒</h2>
+    </div>
+    <div id="almost">
+        <h1>直播即将开始</h1>
+    </div>
+    <div id="live">
+        <h1>直播进行中</h1>
+    </div>
+    <div id="livestream">
+        <h2>直播地址</h2>
+        <h3><a href="https://live.bilibili.com/13353409" target="_blank">https://live.bilibili.com/13353409</a></h3>
+    </div>
+</div>
+<script>
+    var targetTime = new Date(Date.UTC(2020, 1/*Feb*/, 1, 06, 00, 00)); // UTC 06:00 = 14:00 CST
+
+    function updateTime() {
+        var now = new Date(Date.now());
+        var diffMs = targetTime - now;
+
+        if (diffMs > 0) {
+            // Not started
+            var diffSec = Math.floor(diffMs / 1000);
+            var seconds = diffSec % 60;
+            var minutes = Math.floor(diffSec / 60) % 60;
+            var hours = Math.floor(diffSec / 3600) % 24;
+            var days = Math.floor(diffSec / 3600 /24);
+            document.querySelector("#day").innerText = days.toString();
+            document.querySelector("#hour").innerText = hours.toString();
+            document.querySelector("#min").innerText = minutes.toString();
+            document.querySelector("#sec").innerText = seconds.toString();
+
+            if (diffSec < 30 * 60) {
+                document.querySelector("#pre").style.display="block";
+                document.querySelector("#almost").style.display="block";
+                document.querySelector("#live").style.display="none";
+                document.querySelector("#livestream").style.display="block";
+            } else {
+                document.querySelector("#pre").style.display="block";
+                document.querySelector("#almost").style.display="none";
+                document.querySelector("#live").style.display="none";
+                document.querySelector("#livestream").style.display="none";
+            }
+        } else {
+            // Started
+            document.querySelector("#pre").style.display="none";
+            document.querySelector("#almost").style.display="none";
+            document.querySelector("#live").style.display="block";
+            document.querySelector("#livestream").style.display="block";
+        }
+    }
+    updateTime();
+    window.setInterval(updateTime, 1000);
+
+</script>
     <div class="container">
     <h3>主题短讲</h3>
     
