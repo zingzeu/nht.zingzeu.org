@@ -43,8 +43,8 @@ title = title + " | " + Model.String("SiteName");
             <a class="btn btn-secondary btn-lg" style="margin-left: 5px"
                 onclick="showQrCode()">微信群</a>
         </div>
-        <!-- TODO: video player -->
     </div>
+    @Html.Partial("_Countdown")
     @RenderBody()
     
     @Html.Partial("_WechatQrCodeModal")
