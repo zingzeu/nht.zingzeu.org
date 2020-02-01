@@ -12,5 +12,10 @@
             @Model.SpeakerDescription
         </div>
     </div>
+    @{
+        if (Model.TalkScript != null) {
+            <a href="@Model.TalkScript" target="_blank">讲稿</a>
+        }
+    }
 </div>
 </div>

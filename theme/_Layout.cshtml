@@ -44,8 +44,10 @@ title = title + " | " + Model.String("SiteName");
                 onclick="showQrCode()">微信群</a>
         </div>
     </div>
-    @Html.Partial("_Countdown")
-    @RenderBody()
+    
+    <div class="container">
+        @RenderBody()
+    </div>
     
     @Html.Partial("_WechatQrCodeModal")
     <script>

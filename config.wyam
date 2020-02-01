@@ -12,11 +12,25 @@ public sealed class TalkModel
     public string Speaker { get; set; }
     public string SpeakerDescription { get; set; }
     public string SpeakerAvatar { get; set; }
+    public string TalkScript { get; set; }
 }
 
 // Add any pipeline customizations here
 System.Globalization.CultureInfo.DefaultThreadCurrentCulture
     = System.Globalization.CultureInfo.CreateSpecificCulture("zh-CN");
+
+Pipelines.Add("Markdown",
+    ReadFiles("*.md"),
+    FrontMatter(Yaml()),
+    Markdown().UseConfiguration("pipetables"),
+    Meta("Post", @doc.Content), // Move the markdown content to metadata
+    //Merge(
+    //    ReadFiles("help/template.cshtml") // Help template
+    //),
+    Razor(),
+    Meta("PostFile", string.Format(@"{0}.html", ((string)@doc["MachineName"]).ToLower().Replace(' ', '-'))),  // Use the post title as the filename and save it in metadata so we can use it in links later
+    WriteFiles((string)@doc["PostFile"])  // Write the post file 
+);
 
 Pipelines.Add("Home",
     ReadFiles("{!_,}*.cshtml"),
