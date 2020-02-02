@@ -21,7 +21,8 @@ steps:
     git remote set-url --push origin git@github.com:zingzeu/nht.zingzeu.org.git
   displayName: 'Setup deploy key'
   condition: |
-    and(not(eq(variables['Build.Reason'], 'PullRequest')),
+    and(succeeded(),
+        not(eq(variables['Build.Reason'], 'PullRequest')),
         eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 - script: |
     cp -rf ./output /tmp/
@@ -41,5 +42,6 @@ steps:
     git reset --hard gh-pages-new --
     git push --force origin gh-pages
   condition: |
-    and(not(eq(variables['Build.Reason'], 'PullRequest')),
+    and(succeeded(),
+        not(eq(variables['Build.Reason'], 'PullRequest')),
         eq(variables['Build.SourceBranch'], 'refs/heads/master'))
