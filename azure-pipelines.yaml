@@ -1,51 +1,45 @@
+
 trigger:
-  - master
+- master
 
 pool:
-  vmImage: "Ubuntu-16.04"
+  vmImage: 'Ubuntu-16.04'
 
-jobs:
-  - job: Build
-    steps:
-      - script: dotnet tool install --tool-path /tmp/ Wyam.Tool
-        displayName: Install Wyam
-      - script: /tmp/wyam build
-        displayName: Wyam build
-
-  - job: Deploy
-    dependsOn: Build
-    condition: |
-      and(succeeded(),
-          not(eq(variables['Build.Reason'], 'PullRequest')),
-          eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    steps:
-      - task: DownloadSecureFile@1
-        inputs:
-          secureFile: deploy_key
-        displayName: "Get the deploy key"
-      - script: |
-          mkdir ~/.ssh && mv $DOWNLOADSECUREFILE_SECUREFILEPATH ~/.ssh/id_rsa
-          chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          git remote set-url --push origin git@github.com:zingzeu/nht.zingzeu.org.git
-        displayName: "Setup deploy key"
-      - script: |
-          cp -rf ./output /tmp/
-          git remote update
-          git fetch
-          git checkout gh-pages
-          git checkout -b gh-pages-new
-          git reset --hard origin/gh-pages
-          git rm -r '*'
-          rm -rf ./*
-          cp -rf /tmp/output/* ./
-          git add .
-          git config --local user.name "Azure Pipelines"
-          git config --local user.email "azuredevops@microsoft.com"
-          git commit --message "Azure DevOps Build ***NO_CI***"
-          git checkout gh-pages
-          git reset --hard gh-pages-new --
-          git push --force origin gh-pages
-        condition: |
-          and(not(eq(variables['Build.Reason'], 'PullRequest')),
-              eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+steps:
+- script: dotnet tool install --tool-path /tmp/ Wyam.Tool
+  displayName: Install Wyam
+- script: /tmp/wyam build
+  displayName: Wyam build
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: deploy_key
+  displayName: 'Get the deploy key'
+- script: |
+    mkdir ~/.ssh && mv $DOWNLOADSECUREFILE_SECUREFILEPATH ~/.ssh/id_rsa
+    chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    git remote set-url --push origin git@github.com:zingzeu/nht.zingzeu.org.git
+  displayName: 'Setup deploy key'
+  condition: |
+    and(not(eq(variables['Build.Reason'], 'PullRequest')),
+        eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+- script: |
+    cp -rf ./output /tmp/
+    git remote update
+    git fetch
+    git checkout gh-pages
+    git checkout -b gh-pages-new
+    git reset --hard origin/gh-pages
+    git rm -r '*'
+    rm -rf ./*
+    cp -rf /tmp/output/* ./
+    git add .
+    git config --local user.name "Azure Pipelines"
+    git config --local user.email "azuredevops@microsoft.com"
+    git commit --message "Azure DevOps Build ***NO_CI***"
+    git checkout gh-pages
+    git reset --hard gh-pages-new --
+    git push --force origin gh-pages
+  condition: |
+    and(not(eq(variables['Build.Reason'], 'PullRequest')),
+        eq(variables['Build.SourceBranch'], 'refs/heads/master'))
